@@ -8,12 +8,13 @@ template <typename T>
 void foo(const T& value)
 {
 	using namespace si;
+	using namespace stdx;
 
-	Static_If< std::is_same<T, std::string>::value >([&](auto _)
+	Static_If<is_same_v<T, std::string>>([&](auto _)
 	{
 		std::cout << _(value).substr(0, 2) << std::endl;
 	})
-	.Else_if< std::is_same<T, int>::value >([&](auto _)
+	.Else_if(is_same_v<T, int>, [&](auto _)
 	{
 		std::cout << _(value) / 2 << std::endl;
 	})
@@ -26,8 +27,9 @@ void foo(const T& value)
 int main()
 {
 	std::string a = "Test";
-	int b = 42;
-	double d = 3.14;
+	
+	int b 		= 42;
+	double d 	= 3.14;
 
 	foo(a); // Prints "Te"
 	foo(b); // Prints 12
