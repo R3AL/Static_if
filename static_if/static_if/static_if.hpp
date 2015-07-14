@@ -36,8 +36,8 @@ namespace si
 				m_true(_());
 			}
 
-			template <bool Condition, typename T>
-			auto Else_if(T)
+			template <bool Condition, typename Unused>
+			auto Else_if(Unused)
 			{
 				return static_if_internal<true, TrueFunctor>(m_true);
 			}
@@ -59,10 +59,10 @@ namespace si
 				falseFunctor(_());
 			}
 
-			template <bool Condition, typename TrueFunctor2>
-			auto Else_if(TrueFunctor2 trueFunctor2)
+			template <bool Condition, typename ElseIfTrueFunctor>
+			auto Else_if(ElseIfTrueFunctor elseIfTrueFunctor)
 			{
-				return static_if_internal<Condition, TrueFunctor2>(trueFunctor2);
+				return static_if_internal<Condition, ElseIfTrueFunctor>(elseIfTrueFunctor);
 			}
 		};
 	}
