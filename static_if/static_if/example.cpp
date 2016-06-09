@@ -32,6 +32,6 @@ int main()
 	double d 	= 3.14;
 
 	foo(a); // Prints "Te"
-	foo(b); // Prints 12
+	foo(b); // Prints 21
 	foo(d); // Prints 3.14
 }
